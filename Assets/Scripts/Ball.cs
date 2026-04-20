@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -5,13 +6,15 @@ public class Ball : MonoBehaviour
     public float speed;
 
     private Rigidbody2D rig;
+    private SpriteRenderer sprite;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        Launch();
+        sprite = GetComponent<SpriteRenderer>();
+        StartCoroutine(PlayBall());
     }
 
     void Launch()
@@ -32,6 +35,28 @@ public class Ball : MonoBehaviour
         direction.y = Random.Range(-0.5f, 0.5f);
 
         rig.linearVelocity = direction * speed;
+    }
+
+    public void ResetBall()
+    {
+        rig.linearVelocity = Vector2.zero;
+        transform.position = Vector2.zero;
+
+        StartCoroutine(PlayBall());
+    }
+
+    IEnumerator PlayBall()
+    {
+        sprite.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        sprite.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        sprite.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        sprite.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        sprite.enabled = true;
+        Launch();
     }
     
 }

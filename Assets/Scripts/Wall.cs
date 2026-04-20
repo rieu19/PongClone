@@ -18,6 +18,9 @@ public class Wall : MonoBehaviour
             {
                 gameManager.AIPoint();
             }
+
+            other.gameObject.GetComponent<Ball>().ResetBall();
+
         }
     }
 }
