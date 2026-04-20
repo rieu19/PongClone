@@ -1,19 +1,22 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
     public float speed;
+    public TrailRenderer trail;
 
     private Rigidbody2D rig;
-    private SpriteRenderer sprite;
+    public SpriteRenderer sprite;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        
+
         StartCoroutine(PlayBall());
     }
 
@@ -40,8 +43,10 @@ public class Ball : MonoBehaviour
     public void ResetBall()
     {
         rig.linearVelocity = Vector2.zero;
+        trail.Clear();
+        trail.enabled = false;
         transform.position = Vector2.zero;
-
+        trail.enabled = true;
         StartCoroutine(PlayBall());
     }
 
@@ -58,5 +63,24 @@ public class Ball : MonoBehaviour
         sprite.enabled = true;
         Launch();
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.tag == "Paddle")
+        {
+            other.gameObject.GetComponent<PaddleJuice>().PlayHitEffect();
+
+            BallJuice();
+        }
+
+        if(other.gameObject.layer == 6)
+        {
+            BallJuice();
+        }
+    }
+
+    void BallJuice()
+    {
+        sprite.transform.DOScale(1.8f, 0.1f).SetLoops(2, LoopType.Yoyo);
+    }
 }
