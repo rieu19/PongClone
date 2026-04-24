@@ -42,6 +42,7 @@ public class Ball : MonoBehaviour
 
     public void ResetBall()
     {
+        sprite.transform.localScale = Vector3.one;
         rig.linearVelocity = Vector2.zero;
         trail.Clear();
         trail.enabled = false;
@@ -81,6 +82,19 @@ public class Ball : MonoBehaviour
 
     void BallJuice()
     {
+        sprite.transform.DOKill();
+        sprite.transform.localScale = Vector3.one;
+
         sprite.transform.DOScale(1.8f, 0.1f).SetLoops(2, LoopType.Yoyo);
+
+        Camera.main.transform.DOKill();
+        Camera.main.transform.DOShakePosition(
+            0.1f, //duração
+            0.2f, //força do shake
+            10,   //vibraçoes
+            90,  // aleatoriedade
+            false, //nao mudar o eixo z
+            true // fade out
+            );
     }
 }
