@@ -10,6 +10,8 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rig;
     public SpriteRenderer sprite;
 
+    public GameObject explosion;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -42,6 +44,10 @@ public class Ball : MonoBehaviour
 
     public void ResetBall()
     {
+
+        GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
+        Destroy(exp, 2f);
+
         sprite.transform.localScale = Vector3.one;
         rig.linearVelocity = Vector2.zero;
         trail.Clear();

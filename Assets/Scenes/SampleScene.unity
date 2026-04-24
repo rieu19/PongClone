@@ -2038,6 +2038,7 @@ MonoBehaviour:
   speed: 10
   trail: {fileID: 698864032}
   sprite: {fileID: 2096247255}
+  explosion: {fileID: 6639403914707320074, guid: 846292315bf86474ba4cb9d2336e4dee, type: 3}
 --- !u!58 &2099159882
 CircleCollider2D:
   m_ObjectHideFlags: 0
