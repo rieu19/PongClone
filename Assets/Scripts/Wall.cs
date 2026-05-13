@@ -9,6 +9,9 @@ public class Wall : MonoBehaviour
     {
         if(other.gameObject.tag == "Ball")
         {
+            if (gameManager.IsGameEnded)
+                return;
+
             if (CompareTag("AIWall"))
             {
                 gameManager.PlayerPoint();
@@ -18,8 +21,8 @@ public class Wall : MonoBehaviour
             {
                 gameManager.AIPoint();
             }
-
-            other.gameObject.GetComponent<Ball>().ResetBall();
+            if (!gameManager.IsGameEnded)
+                other.gameObject.GetComponent<Ball>().ResetBall();
 
         }
     }

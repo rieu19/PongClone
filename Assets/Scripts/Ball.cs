@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class Ball : MonoBehaviour
     public SpriteRenderer sprite;
 
     public GameObject explosion;
+
+    public GameManager gameManager;
 
     [Header("Audios")]
     public AudioSource audioSource;
@@ -52,6 +55,10 @@ public class Ball : MonoBehaviour
 
     public void ResetBall()
     {
+        if (gameManager.IsGameEnded)
+            return;
+
+
         PlayExplode();
 
         GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
