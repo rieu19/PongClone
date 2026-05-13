@@ -12,6 +12,11 @@ public class Ball : MonoBehaviour
 
     public GameObject explosion;
 
+    [Header("Audios")]
+    public AudioSource audioSource;
+    public AudioClip explode;
+    public AudioClip ballHit;
+    public AudioClip gameOver;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +29,9 @@ public class Ball : MonoBehaviour
 
     void Launch()
     {
+        audioSource.PlayOneShot(ballHit);
+
+
         Vector2 direction = Vector2.zero;
 
         //quero que vá para esquerda
@@ -44,6 +52,7 @@ public class Ball : MonoBehaviour
 
     public void ResetBall()
     {
+        PlayExplode();
 
         GameObject exp = Instantiate(explosion, transform.position, transform.rotation);
         Destroy(exp, 2f);
@@ -88,6 +97,8 @@ public class Ball : MonoBehaviour
 
     void BallJuice()
     {
+        audioSource.PlayOneShot(ballHit);
+
         sprite.transform.DOKill();
         sprite.transform.localScale = Vector3.one;
 
@@ -102,5 +113,11 @@ public class Ball : MonoBehaviour
             false, //nao mudar o eixo z
             true // fade out
             );
+    }
+
+    void PlayExplode()
+    {
+        audioSource.PlayOneShot(explode);
+        audioSource.PlayOneShot(gameOver);
     }
 }
