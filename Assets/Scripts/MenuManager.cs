@@ -3,6 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+
+    [Header("AI Level")]
+    public float easySpeed = 4f;
+    public float hardSpeed = 7f;
+
+
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,9 +23,21 @@ public class MenuManager : MonoBehaviour
         
     }
 
-    public void PlayVsAi()
+    public void PlayVsAiEasy()
     {
         GameMode.IsPvP = false;
+
+        GameMode.AISpeed = easySpeed;
+
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void PlayVsAIHard()
+    {
+        GameMode.IsPvP = false;
+
+        GameMode.AISpeed = hardSpeed;
+
         SceneManager.LoadScene("GameScene");
     }
 

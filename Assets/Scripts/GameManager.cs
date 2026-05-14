@@ -53,6 +53,13 @@ public class GameManager : MonoBehaviour
         if (paddleAI != null)
         {
             paddleAI.SetActive(!pvp);
+
+            if (!pvp)
+            {
+                AIPaddle ai = paddleAI.GetComponent<AIPaddle>();
+
+                ai.speed = GameMode.AISpeed;
+            }
         }
 
         if (paddlePlayer2 != null)
