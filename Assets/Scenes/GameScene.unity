@@ -1158,6 +1158,8 @@ MonoBehaviour:
   audioSource: {fileID: 574910306}
   scoreSfx: {fileID: 8300000, guid: 4ca83501ae3f50b4baca2d25c1247db0, type: 3}
   winPanel: {fileID: 355957170}
+  paddleAI: {fileID: 827184991}
+  paddlePlayer2: {fileID: 2011978443}
 --- !u!4 &574910305
 Transform:
   m_ObjectHideFlags: 0
@@ -2823,7 +2825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2011978444
 MonoBehaviour:
   m_ObjectHideFlags: 0

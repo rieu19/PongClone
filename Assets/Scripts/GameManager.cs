@@ -20,10 +20,20 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public GameObject winPanel;
 
+    [Header("Paddles")]
+    public GameObject paddleAI;
+    public GameObject paddlePlayer2;
+
     public bool IsGameEnded 
     { 
         get; 
         private set; 
+    }
+
+
+    private void Awake()
+    {
+        ApplyGameMode();
     }
 
     private void Start()
@@ -35,6 +45,22 @@ public class GameManager : MonoBehaviour
         }
 
     }
+
+    void ApplyGameMode()
+    {
+        bool pvp = GameMode.IsPvP;
+
+        if (paddleAI != null)
+        {
+            paddleAI.SetActive(!pvp);
+        }
+
+        if (paddlePlayer2 != null)
+        {
+            paddlePlayer2.SetActive(pvp);
+        }
+    }
+
     public void PlayerPoint()
     {
         if (IsGameEnded) return;

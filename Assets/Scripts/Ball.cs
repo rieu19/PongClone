@@ -55,8 +55,8 @@ public class Ball : MonoBehaviour
 
     public void ResetBall()
     {
-        if (gameManager.IsGameEnded)
-            return;
+        //if (gameManager.IsGameEnded)
+        //    return;
 
 
         PlayExplode();
